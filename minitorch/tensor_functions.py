@@ -193,7 +193,10 @@ class Tanh(Function):
                 Tensor containing the element-wise tanh of a.
         """
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError
+        ctx.save_for_backward(a)
+        return a.f.tanh_map(a)
+
+        # raise NotImplementedError
         ### END YOUR SOLUTION
     
     @staticmethod
@@ -212,8 +215,11 @@ class Tanh(Function):
             output : Tensor
                 gradient_for_a must be the correct element-wise gradient for tanh.
         """
+
+        a = ctx.saved_values
+        return grad_out * (-(out ** 2) + 1)
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError
+        # raise NotImplementedError
         ### END YOUR SOLUTION
 
 class Sigmoid(Function):
