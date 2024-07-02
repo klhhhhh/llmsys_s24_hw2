@@ -104,11 +104,11 @@ __device__ float fn(int fn_id, float x, float y=0) {
       }
       case POW: {
 	// TODO
-        return x;
+        return powf(x, y);
       }
       case TANH: {
 	// TODO
-        return x;
+        return tanf(x);
       }
       default: {
         return x + y;
