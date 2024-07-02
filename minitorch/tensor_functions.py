@@ -140,7 +140,10 @@ class PowerScalar(Function):
                 Tensor containing the result of raising every element of a to scalar.
         """
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError
+        ctx.save_for_backward(a, scalar)
+        return a.f.pow_scalar_zip(a, scalar)
+
+        # raise NotImplementedError
         ### END YOUR SOLUTION
 
     @staticmethod
@@ -163,10 +166,10 @@ class PowerScalar(Function):
                 gradient_for_a must be the correct gradient, but just return 0.0 for the gradient of scalar.
         """
         a, scalar = ctx.saved_values
-        grad_a    = None
+        grad_a = grad_output * scalar * (a ** (scalar - 1))
         
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError
+        # raise NotImplementedError
         ### END YOUR SOLUTION
 
         return (grad_a, 0.0)
